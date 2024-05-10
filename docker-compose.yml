@@ -50,7 +50,8 @@ services:
     hostname: wazuh.indexer
     restart: always
     ports:
-      - "9200:9200"
+#      - "9200:9200"
+      - "9201:9200" # prevent port conflict with other projects
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -75,7 +76,8 @@ services:
     hostname: wazuh.dashboard
     restart: always
     ports:
-      - 443:5601
+#      - 443:5601
+      - 7443:5601 # prevent port conflict with other projects
     environment:
       - INDEXER_USERNAME=admin
       - INDEXER_PASSWORD=SecretPassword
